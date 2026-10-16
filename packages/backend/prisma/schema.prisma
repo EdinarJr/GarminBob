@@ -1,0 +1,279 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  activities         GarminActivity[]
+  metrics            GarminMetrics[]
+  nutritionPlans     NutritionPlan[]
+  nutritionLogs      NutritionLog[]
+  physicalExams      PhysicalExam[]
+  generatedTrainings GeneratedTraining[]
+  medications        Medication[]
+  supplements        Supplement[]
+  labExams           LabExam[]
+  trainerWorkouts    TrainerWorkout[]
+  clinicalAnalyses   ClinicalAnalysis[]
+
+  @@map("users")
+}
+
+model GarminActivity {
+  id             String   @id @default(uuid())
+  userId         String
+  activityType   String
+  date           DateTime
+  duration       Int // minutos
+  distance       Float? // km
+  calories       Int?
+  avgHeartRate   Int?
+  maxHeartRate   Int?
+  avgPace        Float? // min/km
+  elevation      Float? // metros
+  trainingEffect Float?
+  vo2max         Float?
+  rawData        Json?
+  createdAt      DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, date])
+  @@map("garmin_activities")
+}
+
+model GarminMetrics {
+  id               String   @id @default(uuid())
+  userId           String
+  date             DateTime
+  restingHeartRate Int?
+  hrv              Int? // variabilidade
+  sleepHours       Float?
+  sleepQuality     Int? // 0-100
+  stress           Int? // 0-100
+  bodyBattery      Int? // 0-100
+  steps            Int?
+  createdAt        DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId, date])
+  @@map("garmin_metrics")
+}
+
+model NutritionPlan {
+  id            String    @id @default(uuid())
+  userId        String
+  name          String
+  startDate     DateTime
+  endDate       DateTime?
+  dailyCalories Int
+  macros        Json // {protein, carbs, fat}
+  meals         Json // array de refeições
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, startDate])
+  @@map("nutrition_plans")
+}
+
+model NutritionLog {
+  id        String   @id @default(uuid())
+  userId    String
+  date      DateTime
+  meal      String
+  calories  Int
+  protein   Float
+  carbs     Float
+  fat       Float
+  notes     String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, date])
+  @@map("nutrition_logs")
+}
+
+model PhysicalExam {
+  id          String   @id @default(uuid())
+  userId      String
+  examDate    DateTime
+  examType    String
+  results     Json // dados estruturados do exame
+  doctorNotes String?
+  attachments String[] // URLs dos arquivos
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, examDate])
+  @@map("physical_exams")
+}
+
+model GeneratedTraining {
+  id                   String   @id @default(uuid())
+  userId               String
+  generatedAt          DateTime @default(now())
+  weekStartDate        DateTime
+  weekEndDate          DateTime
+  goal                 String
+  aiAnalysis           Json // análise da IA
+  weeklyPlan           Json // plano semanal detalhado
+  nutritionAdjustments Json?
+  status               String   @default("pending") // pending, active, completed
+  userFeedback         String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, weekStartDate])
+  @@map("generated_trainings")
+}
+
+// Medicamentos prescritos pelo Endocrinologista
+model Medication {
+  id            String    @id @default(uuid())
+  userId        String
+  name          String
+  dosage        String
+  frequency     String
+  prescribedBy  String    // Endocrinologista
+  startDate     DateTime
+  endDate       DateTime?
+  purpose       String    // Objetivo do medicamento
+  sideEffects   String?
+  notes         String?
+  active        Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, startDate])
+  @@map("medications")
+}
+
+// Suplementos indicados pelo Endocrinologista
+model Supplement {
+  id           String    @id @default(uuid())
+  userId       String
+  name         String
+  dosage       String
+  frequency    String
+  prescribedBy String    // Endocrinologista/Nutrólogo
+  startDate    DateTime
+  endDate      DateTime?
+  purpose      String    // Objetivo do suplemento
+  timing       String?   // Horário recomendado (ex: "antes do treino")
+  notes        String?
+  active       Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, startDate])
+  @@map("supplements")
+}
+
+// Exames laboratoriais solicitados
+model LabExam {
+  id            String   @id @default(uuid())
+  userId        String
+  examDate      DateTime
+  examType      String   // Tipo de exame (Hemograma, Hormonal, etc)
+  requestedBy   String   // Endocrinologista/Nutrólogo
+  laboratory    String?
+  results       Json     // Resultados estruturados
+  referenceValues Json   // Valores de referência
+  attachments   String[] // URLs dos PDFs/imagens
+  interpretation String? // Interpretação médica
+  alerts        String[] // Alertas sobre valores fora do normal
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, examDate])
+  @@map("lab_exams")
+}
+
+// Treinos prescritos pelo Educador Físico
+model TrainerWorkout {
+  id              String    @id @default(uuid())
+  userId          String
+  name            String
+  description     String?
+  prescribedBy    String    // Nome do Educador Físico
+  startDate       DateTime
+  endDate         DateTime?
+  weeklySchedule  Json      // Programação semanal detalhada
+  exercises       Json      // Lista de exercícios com séries, repetições, carga
+  goals           String[]  // Objetivos do treino
+  progressMetrics Json?     // Métricas de progresso
+  notes           String?
+  active          Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, startDate])
+  @@map("trainer_workouts")
+}
+
+// Análises clínicas com correlações
+model ClinicalAnalysis {
+  id                    String   @id @default(uuid())
+  userId                String
+  analysisDate          DateTime @default(now())
+  periodStart           DateTime
+  periodEnd             DateTime
+  
+  // Análise de exames
+  examTrends            Json     // Tendências dos exames ao longo do tempo
+  examAlerts            String[] // Alertas sobre valores preocupantes
+  
+  // Correlações
+  nutritionImpact       Json     // Impacto da nutrição nos exames
+  trainingImpact        Json     // Impacto dos treinos nos exames
+  medicationEffects     Json     // Efeitos dos medicamentos
+  supplementEffects     Json     // Efeitos dos suplementos
+  
+  // Recomendações personalizadas
+  nutritionRecommendations String[] // Recomendações nutricionais
+  trainingRecommendations  String[] // Recomendações de treino
+  medicalRecommendations   String[] // Recomendações médicas
+  
+  // Análise da IA
+  aiInsights            Json     // Insights gerados pela IA
+  riskFactors           String[] // Fatores de risco identificados
+  positiveFactors       String[] // Fatores positivos identificados
+  
+  overallScore          Float?   // Score geral de saúde (0-100)
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, analysisDate])
+  @@map("clinical_analyses")
+}

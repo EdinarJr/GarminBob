@@ -1,0 +1,357 @@
+{
+  "medications": [
+    {
+      "name": "Levotiroxina Sódica",
+      "dosage": "50mcg",
+      "frequency": "1x ao dia pela manhã",
+      "prescribedBy": "Dr. João Silva - Endocrinologista",
+      "startDate": "2024-01-15",
+      "endDate": null,
+      "purpose": "Tratamento de hipotireoidismo",
+      "sideEffects": "Nenhum relatado",
+      "notes": "Tomar em jejum, 30 minutos antes do café",
+      "active": true
+    },
+    {
+      "name": "Vitamina D3",
+      "dosage": "2000 UI",
+      "frequency": "1x ao dia",
+      "prescribedBy": "Dr. João Silva - Endocrinologista",
+      "startDate": "2024-02-01",
+      "endDate": null,
+      "purpose": "Suplementação de vitamina D",
+      "sideEffects": null,
+      "notes": "Tomar após refeição com gordura",
+      "active": true
+    }
+  ],
+  
+  "supplements": [
+    {
+      "name": "Whey Protein Isolado",
+      "dosage": "30g",
+      "frequency": "2x ao dia",
+      "prescribedBy": "Dra. Maria Santos - Nutricionista",
+      "startDate": "2024-01-10",
+      "endDate": null,
+      "purpose": "Suporte para ganho de massa muscular",
+      "timing": "Pós-treino e antes de dormir",
+      "notes": "Misturar com água ou leite",
+      "active": true
+    },
+    {
+      "name": "Creatina Monohidratada",
+      "dosage": "5g",
+      "frequency": "1x ao dia",
+      "prescribedBy": "Dra. Maria Santos - Nutricionista",
+      "startDate": "2024-01-10",
+      "endDate": null,
+      "purpose": "Melhora de performance e força",
+      "timing": "Pós-treino",
+      "notes": "Pode ser tomada com suco ou água",
+      "active": true
+    },
+    {
+      "name": "Ômega 3",
+      "dosage": "1000mg",
+      "frequency": "2x ao dia",
+      "prescribedBy": "Dra. Maria Santos - Nutricionista",
+      "startDate": "2024-01-10",
+      "endDate": null,
+      "purpose": "Saúde cardiovascular e anti-inflamatório",
+      "timing": "Junto com refeições principais",
+      "notes": "Preferir após café e jantar",
+      "active": true
+    }
+  ],
+  
+  "labExams": [
+    {
+      "examDate": "2024-01-15",
+      "examType": "Hormonal Completo",
+      "requestedBy": "Dr. João Silva - Endocrinologista",
+      "laboratory": "Laboratório Exame",
+      "results": {
+        "testosterone_total": 520,
+        "testosterone_free": 12.5,
+        "tsh": 2.8,
+        "t4_livre": 1.3,
+        "t3_livre": 3.2,
+        "cortisol": 15,
+        "vitamin_d": 28,
+        "dhea": 350
+      },
+      "referenceValues": {
+        "testosterone_total": { "min": 300, "max": 1000, "unit": "ng/dL" },
+        "testosterone_free": { "min": 9, "max": 30, "unit": "pg/mL" },
+        "tsh": { "min": 0.5, "max": 4.5, "unit": "mUI/L" },
+        "t4_livre": { "min": 0.8, "max": 1.8, "unit": "ng/dL" },
+        "t3_livre": { "min": 2.3, "max": 4.2, "unit": "pg/mL" },
+        "cortisol": { "min": 5, "max": 25, "unit": "mcg/dL" },
+        "vitamin_d": { "min": 30, "max": 100, "unit": "ng/mL" },
+        "dhea": { "min": 280, "max": 640, "unit": "mcg/dL" }
+      },
+      "interpretation": "Vitamina D abaixo do ideal, demais valores normais",
+      "alerts": [],
+      "attachments": []
+    },
+    {
+      "examDate": "2024-04-15",
+      "examType": "Hormonal Completo",
+      "requestedBy": "Dr. João Silva - Endocrinologista",
+      "laboratory": "Laboratório Exame",
+      "results": {
+        "testosterone_total": 580,
+        "testosterone_free": 14.2,
+        "tsh": 2.5,
+        "t4_livre": 1.4,
+        "t3_livre": 3.4,
+        "cortisol": 13,
+        "vitamin_d": 42,
+        "dhea": 380
+      },
+      "referenceValues": {
+        "testosterone_total": { "min": 300, "max": 1000, "unit": "ng/dL" },
+        "testosterone_free": { "min": 9, "max": 30, "unit": "pg/mL" },
+        "tsh": { "min": 0.5, "max": 4.5, "unit": "mUI/L" },
+        "t4_livre": { "min": 0.8, "max": 1.8, "unit": "ng/dL" },
+        "t3_livre": { "min": 2.3, "max": 4.2, "unit": "pg/mL" },
+        "cortisol": { "min": 5, "max": 25, "unit": "mcg/dL" },
+        "vitamin_d": { "min": 30, "max": 100, "unit": "ng/mL" },
+        "dhea": { "min": 280, "max": 640, "unit": "mcg/dL" }
+      },
+      "interpretation": "Melhora significativa da vitamina D, testosterona em elevação",
+      "alerts": [],
+      "attachments": []
+    },
+    {
+      "examDate": "2024-03-01",
+      "examType": "Lipidograma",
+      "requestedBy": "Dr. João Silva - Endocrinologista",
+      "laboratory": "Laboratório Exame",
+      "results": {
+        "cholesterol_total": 185,
+        "hdl": 55,
+        "ldl": 110,
+        "vldl": 20,
+        "triglycerides": 95,
+        "glucose": 88
+      },
+      "referenceValues": {
+        "cholesterol_total": { "min": 0, "max": 200, "unit": "mg/dL" },
+        "hdl": { "min": 40, "max": 999, "unit": "mg/dL" },
+        "ldl": { "min": 0, "max": 130, "unit": "mg/dL" },
+        "vldl": { "min": 0, "max": 40, "unit": "mg/dL" },
+        "triglycerides": { "min": 0, "max": 150, "unit": "mg/dL" },
+        "glucose": { "min": 70, "max": 100, "unit": "mg/dL" }
+      },
+      "interpretation": "Perfil lipídico excelente",
+      "alerts": [],
+      "attachments": []
+    }
+  ],
+  
+  "trainerWorkouts": [
+    {
+      "name": "Programa de Hipertrofia - Fase 1",
+      "description": "Programa focado em ganho de massa muscular com ênfase em compostos",
+      "prescribedBy": "Prof. Carlos Mendes - Educador Físico CREF 123456",
+      "startDate": "2024-01-08",
+      "endDate": "2024-04-08",
+      "weeklySchedule": {
+        "monday": {
+          "focus": "Peito e Tríceps",
+          "duration": 75,
+          "intensity": "Alta"
+        },
+        "tuesday": {
+          "focus": "Costas e Bíceps",
+          "duration": 75,
+          "intensity": "Alta"
+        },
+        "wednesday": {
+          "focus": "Descanso ou Cardio Leve",
+          "duration": 30,
+          "intensity": "Baixa"
+        },
+        "thursday": {
+          "focus": "Pernas Completo",
+          "duration": 90,
+          "intensity": "Muito Alta"
+        },
+        "friday": {
+          "focus": "Ombros e Abdômen",
+          "duration": 60,
+          "intensity": "Moderada"
+        },
+        "saturday": {
+          "focus": "Treino Funcional",
+          "duration": 45,
+          "intensity": "Moderada"
+        },
+        "sunday": {
+          "focus": "Descanso",
+          "duration": 0,
+          "intensity": "Nenhuma"
+        }
+      },
+      "exercises": [
+        {
+          "name": "Supino Reto com Barra",
+          "sets": 4,
+          "reps": "8-10",
+          "load": "80kg",
+          "rest": "90s",
+          "notes": "Foco em amplitude completa"
+        },
+        {
+          "name": "Agachamento Livre",
+          "sets": 4,
+          "reps": "10-12",
+          "load": "100kg",
+          "rest": "120s",
+          "notes": "Descer até paralelo"
+        },
+        {
+          "name": "Levantamento Terra",
+          "sets": 3,
+          "reps": "6-8",
+          "load": "120kg",
+          "rest": "180s",
+          "notes": "Manter costas retas"
+        },
+        {
+          "name": "Desenvolvimento com Halteres",
+          "sets": 3,
+          "reps": "10-12",
+          "load": "20kg cada",
+          "rest": "60s",
+          "notes": "Controlar descida"
+        }
+      ],
+      "goals": [
+        "Ganho de 3-5kg de massa muscular",
+        "Aumento de força nos exercícios compostos",
+        "Melhora da composição corporal"
+      ],
+      "progressMetrics": {
+        "initialWeight": 78,
+        "targetWeight": 82,
+        "initialBodyFat": 15,
+        "targetBodyFat": 13
+      },
+      "notes": "Progressão de carga a cada 2 semanas. Ajustar volume conforme recuperação.",
+      "active": true
+    }
+  ],
+  
+  "nutritionPlan": {
+    "name": "Plano de Ganho de Massa Muscular",
+    "startDate": "2024-01-10",
+    "endDate": "2024-07-10",
+    "dailyCalories": 2800,
+    "macros": {
+      "protein": 180,
+      "carbs": 350,
+      "fat": 80
+    },
+    "meals": [
+      {
+        "name": "Café da Manhã",
+        "time": "07:00",
+        "foods": [
+          "4 ovos mexidos",
+          "80g aveia",
+          "1 banana",
+          "1 colher de pasta de amendoim"
+        ],
+        "calories": 650,
+        "protein": 35,
+        "carbs": 70,
+        "fat": 20
+      },
+      {
+        "name": "Lanche da Manhã",
+        "time": "10:00",
+        "foods": [
+          "1 scoop whey protein",
+          "1 maçã",
+          "30g castanhas"
+        ],
+        "calories": 350,
+        "protein": 30,
+        "carbs": 30,
+        "fat": 15
+      },
+      {
+        "name": "Almoço",
+        "time": "13:00",
+        "foods": [
+          "200g frango grelhado",
+          "150g arroz integral",
+          "100g batata doce",
+          "Salada verde à vontade",
+          "1 colher azeite"
+        ],
+        "calories": 750,
+        "protein": 50,
+        "carbs": 90,
+        "fat": 15
+      },
+      {
+        "name": "Lanche Pré-Treino",
+        "time": "16:00",
+        "foods": [
+          "2 fatias pão integral",
+          "2 fatias peito de peru",
+          "1 banana"
+        ],
+        "calories": 300,
+        "protein": 20,
+        "carbs": 50,
+        "fat": 5
+      },
+      {
+        "name": "Pós-Treino",
+        "time": "18:30",
+        "foods": [
+          "1 scoop whey protein",
+          "5g creatina",
+          "1 banana"
+        ],
+        "calories": 250,
+        "protein": 30,
+        "carbs": 35,
+        "fat": 2
+      },
+      {
+        "name": "Jantar",
+        "time": "20:00",
+        "foods": [
+          "200g carne vermelha magra",
+          "150g batata inglesa",
+          "Legumes variados",
+          "Salada"
+        ],
+        "calories": 600,
+        "protein": 45,
+        "carbs": 55,
+        "fat": 18
+      },
+      {
+        "name": "Ceia",
+        "time": "22:30",
+        "foods": [
+          "200g iogurte grego",
+          "30g granola",
+          "1 colher pasta de amendoim"
+        ],
+        "calories": 350,
+        "protein": 25,
+        "carbs": 35,
+        "fat": 15
+      }
+    ],
+    "notes": "Ajustar porções conforme evolução. Manter hidratação de 3-4L água/dia. Suplementação conforme prescrito."
+  }
+}

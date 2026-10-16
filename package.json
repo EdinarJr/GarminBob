@@ -1,0 +1,37 @@
+{
+  "name": "garmin-training-ai",
+  "version": "1.0.0",
+  "description": "Sistema inteligente de análise e geração de treinos personalizados",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:web": "npm run dev --workspace=web",
+    "dev:mobile": "npm run dev --workspace=mobile",
+    "build": "npm run build --workspaces",
+    "build:backend": "npm run build --workspace=backend",
+    "build:web": "npm run build --workspace=web",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist"
+  },
+  "keywords": [
+    "garmin",
+    "training",
+    "ai",
+    "fitness",
+    "health"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3",
+    "prettier": "^3.1.1",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0"
+  }
+}

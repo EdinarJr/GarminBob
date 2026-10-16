@@ -1,0 +1,7 @@
+# Ignorar todos os arquivos de dados
+*.json
+
+# Mas manter o diretório no git
+!.gitignore
+
+# Made with Bob
